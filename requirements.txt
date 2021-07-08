@@ -1,0 +1,4 @@
+pygments
+mkdocs-img2fig-plugin
+mkdocs-bootstrap-tables-plugin
+mkdocs-git-revision-date-localized-plugin

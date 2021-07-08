@@ -1,0 +1,20 @@
+name: Publish mkdocs via GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Deploy mkdocs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v1
+
+      - name: Deploy mkdocs
+        uses: mhausenblas/mkdocs-deploy-gh-pages@fbdbb0c8e24999b34f8b072a4fe4220e4fc0085b
+        env:
+          #CUSTOM_DOMAIN: blog.bulderbank.no
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

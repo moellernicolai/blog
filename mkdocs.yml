@@ -1,0 +1,45 @@
+site_name: "Bulder Bank Blog"
+site_url: 'https://bulderbank.github.io/'
+
+site_author: 'Team Bulder'
+site_description: 'Lorem Ipsum'
+
+repo_name: 'bulderbank/blog'
+repo_url: 'https://github.com/bulderbank/blog'
+
+strict: true # Fail build if there are broken links
+docs_dir: articles/
+
+nav:
+  - welcome: welcome.md
+
+theme:
+  name: 'material'
+  logo:
+    icon: 'dns'
+  palette:
+    primary: 'red'
+    accent: 'light blue'
+  font:
+    text: 'Source Sans Pro'
+    code: 'Source Code Pro'
+
+plugins:
+  - img2fig
+  - bootstrap-tables
+  - git-revision-date-localized
+  - minify:
+      minify_html: true
+
+markdown_extensions:
+  - codehilite:
+      linenums: true
+
+#extra:
+  #disqus: 'fmlab'
+
+extra_css:
+  - assets/css/tables.css
+  - assets/css/images.css
+  - assets/css/dark_theme.css
+  - assets/css/codehilite.css
