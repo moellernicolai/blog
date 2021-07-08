@@ -1,5 +1,5 @@
-site_name: "Bulder Bank Blog"
-site_url: 'https://bulderbank.github.io/'
+site_name: "Bulder Blog"
+site_url: 'http://blog.test.bulderbank.tech/'
 
 site_author: 'Team Bulder'
 site_description: 'Lorem Ipsum'
@@ -7,39 +7,53 @@ site_description: 'Lorem Ipsum'
 repo_name: 'bulderbank/blog'
 repo_url: 'https://github.com/bulderbank/blog'
 
+edit_uri: edit/main/docs/
+
 strict: true # Fail build if there are broken links
-docs_dir: articles/
+docs_dir: docs/
 
 nav:
-  - welcome: welcome.md
+  - Wahcome: index.md
+  - Cloud:
+      - Human friendy IaC:
+          - Intro: cloud/sensible-iac/intro.md
+  - MermaidJS: mermaid-test.md
 
 theme:
-  name: 'material'
-  logo:
-    icon: 'dns'
+  name: material
+  logo: assets/images/logo.png
+  favicon: assets/images/favicon.png
   palette:
-    primary: 'red'
-    accent: 'light blue'
+    scheme: slate
+    primary: red
+    accent: blue
   font:
-    text: 'Source Sans Pro'
-    code: 'Source Code Pro'
+    text: Source Sans Pro
+    code: Source Code Pro
 
 plugins:
   - img2fig
   - bootstrap-tables
   - git-revision-date-localized
-  - minify:
-      minify_html: true
+  - mermaid2:
+      arguments:
+        theme: 'dark'
 
 markdown_extensions:
-  - codehilite:
+  - pymdownx.highlight:
       linenums: true
-
-#extra:
-  #disqus: 'fmlab'
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:mermaid2.fence_mermaid
+  - pymdownx.inlinehilite
 
 extra_css:
   - assets/css/tables.css
   - assets/css/images.css
   - assets/css/dark_theme.css
-  - assets/css/codehilite.css
+  #- assets/css/codehilite.css
+
+extra_javascript:
+  - https://github-profile.com/dist/gh-profile-card.min.js

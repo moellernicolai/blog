@@ -10,7 +10,12 @@ and background color
 */
 .md-main {
   color: #f8f8f2 !important;
-  background-color: #282a36 !important;
+  background-color: #0b1222 !important;
+}
+
+/* Increase content area width */
+.md-grid {
+  max-width: 1440px;
 }
 
 /*
@@ -29,7 +34,7 @@ Main headlines
 }
 
 .md-header {
-  background-color: #41455c !important;
+  background-color: #23293B !important;
 }
 
 .md-header-nav__title {
@@ -81,7 +86,7 @@ Left and right toc scrollbar
 
 .md-nav {
   color: #f8f8f2 !important;
-  background-color: #282a36 !important;
+  background-color: #0b1222 !important;
 }
 
 /*
@@ -93,7 +98,7 @@ html .md-nav--primary .md-nav__title:before {
 
 .md-nav__title {
   color: rgba(255,255,255,1) !important;
-  background-color: #282a36 !important;
+  background-color: #0b1222 !important;
 }
 
 /*
@@ -105,12 +110,12 @@ Arrow Right Icon
 
 .md-nav__list {
   color: rgba(255,255,255,1) !important;
-  background-color: #282a36 !important;
+  background-color: #0b1222 !important;
 }
 
 .md-nav__item {
   color: rgba(255,255,255,1) !important;
-  background-color: #282a36 !important;
+  background-color: #0b1222 !important;
 }
 
 .md-nav__link[data-md-state=blur] {
@@ -152,7 +157,7 @@ result list background
 */
 .md-search-result__list {
   color: #EEEEEE !important;
-  background-color: #282a36 !important;
+  background-color: #0b1222 !important;
 }
 
 /*
@@ -169,8 +174,12 @@ article preview text color
   color: #BDBDBD !important;
 }
 
+.md-footer {
+  background-color: #0e1629 !important;
+}
+
 .md-footer-nav {
-  background-color: #23242d !important;
+  background-color: #0e1629 !important;
 }
 
 .md-footer-meta {

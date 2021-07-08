@@ -5,11 +5,11 @@
 */
 
 .md-typeset code {
-  background-color: #0000008a;
-  color: #F5F5F5;
-  margin: 0;
-  padding: 0.07353em 0.29412em;
-  box-shadow: none;
+  background-color: #0000008a !important;
+  color: #F5F5F5 !important;
+  margin: 0 !important;
+  padding: 0.07353em 0.29412em !important;
+  box-shadow: none !important;
 }
 
 /*
@@ -110,5 +110,5 @@ actual syntax highlighting
 .codehilite .gd { color: #f92672 !important ; } /* Generic.Deleted & Diff Deleted */
 .codehilite .gi { color: #a6e22e !important ; } /* Generic.Inserted & Diff Inserted */
 
-.codehilite .md-clipboard:before { color: rgba(255, 255, 255, 0.07) } /* Clipboard button (no hover) */
-.codehilite:hover .md-clipboard:before { color: rgba(255, 255, 255, 0.54) } /* Clipboard button (hovered) */
+.codehilite .md-clipboard:before { color: rgba(255, 255, 255, 0.07) !important } /* Clipboard button (no hover) */
+.codehilite:hover .md-clipboard:before { color: rgba(255, 255, 255, 0.54) !important } /* Clipboard button (hovered) */
