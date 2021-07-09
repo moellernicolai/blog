@@ -16,7 +16,7 @@ nav:
   - Wahcome: index.md
   - Cloud:
       - Human friendy IaC:
-          - Intro: cloud/sensible-iac/intro.md
+          - cloud/sensible-iac/index.md
   - MermaidJS: mermaid-test.md
 
 theme:
@@ -30,6 +30,14 @@ theme:
   font:
     text: Source Sans Pro
     code: Source Code Pro
+  features:
+    - navigation.tabs
+    - navigation.tracking
+    - navigation.expand
+    - navigation.indexes
+    - navigation.top
+    - navigation.instant
+    - header.autohide
 
 plugins:
   - img2fig
@@ -38,6 +46,7 @@ plugins:
   - mermaid2:
       arguments:
         theme: 'dark'
+
 
 markdown_extensions:
   - pymdownx.highlight:
@@ -48,6 +57,9 @@ markdown_extensions:
           class: mermaid
           format: !!python/name:mermaid2.fence_mermaid
   - pymdownx.inlinehilite
+  - toc:
+      permalink: true
+      toc_depth: 3
 
 extra_css:
   - assets/css/tables.css

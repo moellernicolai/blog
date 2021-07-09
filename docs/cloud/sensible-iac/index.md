@@ -1,3 +1,5 @@
+# Intro
+
 If we want to provision Virtual Machines in the cloud, we just communicate this desire to our cloud providers.
 If we want to deploy some app, we just communicate this desire to our clusters.
 
