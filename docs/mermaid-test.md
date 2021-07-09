@@ -8,7 +8,7 @@ graph TD;
     C-->D;
 ```
 
-# Sequence
+## Sequence
 
 ```mermaid
 sequenceDiagram
@@ -24,7 +24,7 @@ sequenceDiagram
     Bob-->>John: Jolly good!
 ```
 
-# Class
+## Class
 
 ```mermaid
 classDiagram
@@ -43,7 +43,7 @@ Class01 : int gorilla
 Class08 <--> C2: Cool label
 ```
 
-# Gantt
+## Gantt
 
 ```mermaid
 gantt
@@ -58,7 +58,7 @@ Future task               :         des3, after des2, 5d
 Future task2               :         des4, after des3, 5d
 ```
 
-# User journey
+## User journey
 
 ```mermaid
 journey
@@ -72,7 +72,7 @@ journey
       Sit down: 5: Me
 ```
 
-# Git
+### Git
 
 ```mermaid
 gitGraph:
@@ -93,7 +93,7 @@ commit
 merge newbranch
 ```
 
-# ER
+#### ER
 
 ```mermaid
 erDiagram

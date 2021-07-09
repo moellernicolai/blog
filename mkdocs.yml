@@ -32,12 +32,13 @@ theme:
     code: Source Code Pro
   features:
     - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.tracking
     - navigation.expand
     - navigation.indexes
     - navigation.top
-    - navigation.instant
     - header.autohide
+    - search.suggest
 
 plugins:
   - img2fig
@@ -46,7 +47,7 @@ plugins:
   - mermaid2:
       arguments:
         theme: 'dark'
-
+  - search
 
 markdown_extensions:
   - pymdownx.highlight:
