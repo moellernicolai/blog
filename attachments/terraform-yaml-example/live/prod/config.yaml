@@ -1,0 +1,30 @@
+gcpProvider: 
+  project: prod-project
+  region: europe-west1
+
+# Create service accounts in `prod-project`, and assign IAM roles
+serviceAccounts:
+
+  - name: sa-number-one
+    iam:
+      # Assign `sa-number-one` project-level IAM roles in `prod-project`
+      - type: project
+        name: prod-project
+        roles: 
+          - roles/storage.admin
+          - roles/secretmanager.admin
+
+  - name: sa-number-two
+    iam:
+      # Assign `sa-number-two` project-level IAM roles in `shared-project`
+      - type: project
+        name: shared-project
+        roles:
+          - roles/storage.objectViewer
+    
+      # Assign `sa-number-two` bucket-level IAM roles to a Google Container Registry in `shared-project`
+      - type: bucket
+        name: eu.artifacts.shared-project.appspot.com
+        roles:
+          -  roles/storage.admin
+

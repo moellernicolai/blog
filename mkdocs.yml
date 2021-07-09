@@ -2,7 +2,7 @@ site_name: "Bulder Blog"
 site_url: 'http://blog.bulderbank.no/'
 
 site_author: 'Team Bulder'
-site_description: 'Lorem Ipsum'
+site_description: 'Blog articles by the team @ Bulder Bank'
 
 repo_name: 'bulderbank/blog'
 repo_url: 'https://github.com/bulderbank/blog'
@@ -17,6 +17,8 @@ nav:
   - Cloud:
       - Writing configuration:
           - Intro: cloud/writing-configuration/index.md
+          - Principles: cloud/writing-configuration/config-oriented-code.md
+          - Terraform example: cloud/writing-configuration/terraform.md
   - MermaidJS: mermaid-test.md
 
 theme:
