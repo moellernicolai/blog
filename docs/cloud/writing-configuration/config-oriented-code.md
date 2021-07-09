@@ -66,7 +66,7 @@ Nevertheless, it is a worthwhile problem to solve as it  simplifies long-term co
 Consider the following examples for Terraform input values. 
 Which do you find more intuitive, and which do you think would fare better if we added hundreds of additional lines in the same format:
 
-### Example 1
+###### Example 1
 ```yaml
 # ./config.yaml
 
@@ -89,7 +89,7 @@ iam:
         project: project-b
 ```
 
-### Example 2
+###### Example 2
 ```bash
 # ./iam.tfvars
 
@@ -119,7 +119,7 @@ Example 1 is a configuration oriented approach, Example 2 is not.
 
 If you feel that Example 1 is no more readable than Example 2, my bet is that you would feel differently if we threw a bunch of other resources types into the mix.
 You may also be wondering why I use YAML instead of HCL in Example 1.
-If either of these apply to you, please refer to the subsequent article, *A configuration oriented approach to Terraform*, for more details.
+If either of these apply to you, please refer to the subsequent article in this series, *Configuration oriented Terraform code*.
 
 ### Parse the configuration imperatively when needed
 Configuration oriented approaches usually require custom imperative logic.

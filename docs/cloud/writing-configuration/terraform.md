@@ -5,8 +5,8 @@ The pattern follows the principles listed in preceding article of this series.
 
 Before reading this article, it may be useful to familiarize yourself with how the Terraform documentation suggests we organize our code:
 
-- https://learn.hashicorp.com/tutorials/terraform/organize-configuration
-- https://www.hashicorp.com/blog/structuring-hashicorp-terraform-configuration-for-production
+- [](https://learn.hashicorp.com/tutorials/terraform/organize-configuration)
+- [](https://www.hashicorp.com/blog/structuring-hashicorp-terraform-configuration-for-production)
 
 
 
@@ -59,6 +59,7 @@ At this point, we need a strategy for forwarding input values, hereby referred t
 ###### Option 1: Add configuration directly to `modules.tf`
 The simplest approach would be to replace `<some input value>`, and just hardcode the desired configuration straight into the `modules.tf` files.
 This has several drawbacks, some notable examples being:
+
 - You can't reuse a single input value across multiple modules.
 - If there are a lot of modules, you'll want to spread them across multiple `*.tf` files; your configuration ends up scattered.
 - You can't copy + paste `modules.tf` between `live/dev` and `live/prod`, so implementing change in both environments becomes a bit fiddly.
