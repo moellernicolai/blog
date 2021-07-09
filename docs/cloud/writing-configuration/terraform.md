@@ -225,7 +225,7 @@ The goal is to end up with a strucure where service accounts and IAM roles can b
 The next step would be to write the root and child modules.
 The child modules will just contain normal Terraform code, while the root module will have to contain some imperative logic that translates my YAML into the input values expected by the child modules.
 
-Please refer to [https://github.com/bulderbank/blog/attachments/terraform-yaml-example/](https://github.com/bulderbank/blog/attachments/terraform-yaml-example/) for a complete example based on the YAML configuration depicted above.
+Please refer to [this repository](https://github.com/bulderbank/blog/tree/main/attachments/terraform-yaml-example) for a complete example based on the YAML configuration depicted above.
 
 Some notes on the example:
 
