@@ -1,7 +1,7 @@
 # Configuration oriented Terraform code
 
 This article demonstrates an opinionated pattern for organizing Terraform code.
-The pattern follows the principles listed in the initial article of this series.
+The pattern follows the principles listed in preceding article of this series.
 
 Before reading this article, it may be useful to familiarize yourself with how the Terraform documentation suggests we organize our code:
 
@@ -32,7 +32,7 @@ If we want to create a Terraform project with some home-made modules, across two
 ```
 Each `modules.tf` file would look something like this:
 
-```
+```bash
 # ./live/*/modules.tf
 
 module "a" {
@@ -67,7 +67,7 @@ This has several drawbacks, some notable examples being:
 The textbook approach would be to use `variable` blocks.
 In my opinion, this should only be necessary in the child modules (`./modules/*/variables.tf`), not in the root modules (`./live/*/variables.tf`).
 The reason I don't like this approach is that you have to declare every input value in the root module:
-```
+```bash
 # ./modules/module-a/variables.tf
 
 variable "var1" {
@@ -76,7 +76,7 @@ variable "var1" {
   default = "whatever"
 }
 ```
-```
+```bash
 # ./live/*/modules.tf
 
 module "a" {
@@ -86,7 +86,7 @@ module "a" {
   var1 = var.var1 
 }
 ```
-```
+```bash
 # ./live/*/variables.tf
 
 variable "var1" {
@@ -95,7 +95,7 @@ variable "var1" {
   default = "derp"
 }
 ```
-```
+```bash
 #./live/*/config.auto.tfvars
 
 # Without this line, the active value will be either "derp" or "whatever"
@@ -110,7 +110,7 @@ This can be alleviated with good and consistent Terraform coding style, but I fe
 Terraform comes with [local values](https://www.terraform.io/docs/language/values/locals.html), and a nice set of functions for decoding common file structures, like YAML and JSON.
 In other words, it's possible to do this:
 
-```
+```yaml
 # ./live/*/config.yaml
 
 module-a:
@@ -123,14 +123,14 @@ module-b:
   var2: "b"
   var3: "c"
 ```
-```
+```bash
 # ./live/*/locals.tf
 
 locals {
   config = yamldecode(file("./config.yaml")) 
 }
 ```
-```
+```bash
 # ./live/*/modules.tf
 
 module "a" {
@@ -185,7 +185,7 @@ I focus on `dev`, and write my code in a way where most of the files can be copy
 We will use the same directory layout illustrated earlier.
 When writing your `config.yaml` file; ask yourself what the most intuitive structure would look like.
 For this particular problem, I would want `config.yaml` to look something like this:
-```
+```yaml
 # ./live/dev/config.yaml
 
 gcpProvider: 
