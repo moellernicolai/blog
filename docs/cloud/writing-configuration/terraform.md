@@ -5,10 +5,8 @@ The pattern follows the principles listed in preceding article of this series.
 
 Before reading this article, it may be useful to familiarize yourself with how the Terraform documentation suggests we organize our code:
 
-- [](https://learn.hashicorp.com/tutorials/terraform/organize-configuration)
-- [](https://www.hashicorp.com/blog/structuring-hashicorp-terraform-configuration-for-production)
-
-
+- [https://learn.hashicorp.com/tutorials/terraform/organize-configuration](https://learn.hashicorp.com/tutorials/terraform/organize-configuration)
+- [https://www.hashicorp.com/blog/structuring-hashicorp-terraform-configuration-for-production](https://www.hashicorp.com/blog/structuring-hashicorp-terraform-configuration-for-production)
 
 ### Directory structure
 If we want to create a Terraform project with some home-made modules, across two environments (`dev` and `prod`), the directory layout would look something like this:
