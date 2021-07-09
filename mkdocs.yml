@@ -15,8 +15,8 @@ docs_dir: docs/
 nav:
   - Wahcome: index.md
   - Cloud:
-      - Human friendy IaC:
-          - cloud/sensible-iac/index.md
+      - Writing configuration:
+          - Intro: cloud/writing-configuration/index.md
   - MermaidJS: mermaid-test.md
 
 theme:

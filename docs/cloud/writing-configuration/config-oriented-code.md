@@ -1,16 +1,10 @@
-# Intro
+# Configuration oriented code
 
 If we want to provision Virtual Machines in the cloud, we just communicate this desire to our cloud providers.
 If we want to deploy some app, we just communicate this desire to our clusters.
-
 DevOps people are generally expected to declare *'what'* they want, while the imperative *'how'* aspect often gets abstracted away by other peoples' software.
 
-As a Cloud Engineer at Bulder Bank, I spend a great deal of time expressing my desires through declarative code.
-The motivation behind this series of articles is to share some of the things I've learnt about being declarative.
-In this introductory article, I describe what I mean by being *configuration oriented*, and why I think its important.
-In the subsequent articles, I give practical examples of configuration oriented approaches to working with some of my favorite tools.
-
-# Time forgets
+## Time forgets
 
 ![https://abstrusegoose.com/432](https://abstrusegoose.com/strips/you_down_wit_OPC-yeah_you_know_me.png)
 
@@ -28,7 +22,7 @@ The effort you exert toward being configuration oriented should be thought of as
 You do some extra work upfront, and if you pull it off, you'll save yourself a lot of trouble in the future.
 To better understand this, we will categorize the process of writing code into two *phases*; the *initial phase*, and the *long-term*.
 
-# The initial phase, and the long-term
+## The initial phase, and the long-term
 At no point in time will you understand your own code better than the moment you wrote it.
 We will refer to this moment, and the moments immediately following, as the initial phase.
 In this phase, you are bootstrapping your repository, writing code, solving problems, and doing what you do.
@@ -39,16 +33,16 @@ I would therefore argue that it is wise to focus on the long-term during the ini
 In the long-term, there are two reasons why you might revisit the code you wrote in the initial phase; to understand what's happening, or to modify what's happening.
 Writing code for the long term means that we strive to make things *easy* to understand, and *easy* to modify; simply writing code that works is not sufficient.
 
-# Configuration oriented principles
+## Configuration oriented principles
 One of the central ideas behind what I refer to as being configuration oriented, is to minimize the number of files developers are likely to interact with in the long-term.
 Ideally, configuration oriented code should have one configuration file per environment (eg. `prod.yaml`, `dev.yaml`, etc.).
 These files should be structured in a way that maximises how informative they are from the perspective of a developer who has no idea what the code actually does.
 The way we accomplish this in the Cloud team at Bulder Bank, is to write our configuration as YAML files, and prioritize readability.
 We can choose any structure we want, the price we pay is that the configuration must be imparatively parsed (or translated if you will) into the input formats expected by whatever tool we are working with.
 Long story short, being configuration oriented means that we allow extra complexity into our code for the sake of an eye-friendly configuration file.
-Writing code during the initial phase becomes more difficult, while managing that code in the long term management becomes a whole lot easier.
+Writing code during the initial phase becomes more difficult, while managing that code in the long term becomes a whole lot easier.
 
-# Plan for the future, anticipate change
+### Plan for the future, anticipate change
 During the initial phase, the developer must continually question what modifications people are likely to need in the future.
 For example, if we're dealing with a Terraform repository for assigning IAM roles to users, people will likely want to add new IAM rules over time.
 In that case, the Terraform code should be structured in a way where this can be accomplished by simply updating the configuration; it should not be necessary to modify the underlying Terraform code (the `for_each` loop is your friend).
@@ -57,7 +51,7 @@ Planning for the future is tricky.
 A common trap is to overthink it, and spend far too much time implementing configuration-driven features that nobody will ever use.
 Experience, and a solid understanding of the underlying problem is as crucial as ever when anticipating future demands on some code repository.
 
-# Minimize the number of files you're likely to care about in the long term
+### Minimize the number of files you're likely to care about in the long term
 Experienced DevOps people will agree that the complexity of Infrastructure as Code projects skyrocket when you introduce the requirement for multiple environments.
 For example, if you are required to maintain a production environment, a staging environment, and a development environment, the initial phase of writing code becomes a lot more challanging, regardless of your approach.
 This seems to be a fundamental problem within Infrastructure as Code, and it seems like every DevOps team has their own unique approach to solving the problem.
@@ -68,7 +62,7 @@ Anyone who has tried to implement this kind of pattern will appreciate that it's
 Part of the reason why this is so difficult, is that there are countless ways to approach the problem, and not a whole lot of non-trivial online examples to learn from.
 Nevertheless, it is a worthwhile problem to solve as it  simplifies long-term code interaction, and makes pull requests a lot more concise.
 
-# Make configuration files as informative as possible
+### Make configuration files as informative as possible
 Consider the following examples for Terraform input values. 
 Which do you find more intuitive, and which do you think would fare better if we added hundreds of additional lines in the same format:
 
@@ -115,6 +109,7 @@ guy_project_2 = "project-b"
 ```
 
 Some subjective observations on the above:
+
 - Example 1 is more readable (assuming the reader has seen YAML before).
 - Example 1 is more difficult to transform into a format that Terraform understands.
 - Example 2 makes the initial phase a lot less complicated.
@@ -125,7 +120,6 @@ Example 1 is a configuration oriented approach, Example 2 is not.
 If you feel that Example 1 is no more readable than Example 2, my bet is that you would feel differently if we threw a bunch of other resources types into the mix.
 You may also be wondering why I use YAML instead of HCL in Example 1.
 If either of these apply to you, please refer to the subsequent article, *A configuration oriented approach to Terraform*, for more details.
-
 
 ### Parse the configuration imperatively when needed
 Configuration oriented approaches usually require custom imperative logic.
