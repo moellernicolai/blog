@@ -16,5 +16,5 @@ jobs:
       - name: Deploy mkdocs
         uses: mhausenblas/mkdocs-deploy-gh-pages@fbdbb0c8e24999b34f8b072a4fe4220e4fc0085b
         env:
-          CUSTOM_DOMAIN: blog.test.bulderbank.tech
+          CUSTOM_DOMAIN: blog.bulderbank.no
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

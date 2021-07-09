@@ -1,16 +1,3 @@
-# Wahcome
-
-My name is Fredrick, and i'm your host for this demo. Here is my shiny charizard card~
-
-<div id="github-card"
-  hide-top-languages="true"
-	data-max-repos="3"
-  header-text=""
-	data-username="frealmyr">
-</div>
-
-# Mermaid stuffs
-
 # Simple graph
 
 ```mermaid

@@ -1,5 +1,5 @@
 site_name: "Bulder Blog"
-site_url: 'http://blog.test.bulderbank.tech/'
+site_url: 'http://blog.bulderbank.no/'
 
 site_author: 'Team Bulder'
 site_description: 'Lorem Ipsum'
@@ -54,6 +54,3 @@ extra_css:
   - assets/css/images.css
   - assets/css/dark_theme.css
   #- assets/css/codehilite.css
-
-extra_javascript:
-  - https://github-profile.com/dist/gh-profile-card.min.js
