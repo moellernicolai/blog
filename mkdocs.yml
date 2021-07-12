@@ -1,8 +1,8 @@
-site_name: "Bulder Blog"
+site_name: "Bulder Bank Blog"
 site_url: 'http://blog.bulderbank.no/'
 
 site_author: 'Team Bulder'
-site_description: 'Blog articles by the team @ Bulder Bank'
+site_description: 'Blog articles by the teams @ Bulder Bank'
 
 repo_name: 'bulderbank/blog'
 repo_url: 'https://github.com/bulderbank/blog'
@@ -13,13 +13,23 @@ strict: true # Fail build if there are broken links
 docs_dir: docs/
 
 nav:
-  - Wahcome: index.md
+  - Home: index.md
+  - Android:
+      - android/about.md
+  - Backend:
+      - backend/about.md
   - Cloud:
+      - cloud/about.md
       - Writing configuration:
-          - Intro: cloud/writing-configuration/index.md
-          - Principles: cloud/writing-configuration/config-oriented-code.md
-          - Terraform example: cloud/writing-configuration/terraform.md
-  - MermaidJS: mermaid-test.md
+        - Intro: cloud/writing-configuration/intro.md
+        - Principles: cloud/writing-configuration/config-oriented-code.md
+        - Terraform example: cloud/writing-configuration/terraform.md
+  - iOS:
+      - ios/about.md
+  - Loan:
+      - loan/about.md
+  - UX:
+      - ux/about.md
 
 theme:
   name: material
@@ -63,9 +73,13 @@ markdown_extensions:
   - toc:
       permalink: true
       toc_depth: 3
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
 
 extra_css:
-  - assets/css/tables.css
+  #- assets/css/tables.css
   - assets/css/images.css
   - assets/css/dark_theme.css
   #- assets/css/codehilite.css

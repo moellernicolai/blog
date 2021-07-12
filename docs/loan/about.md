@@ -1,0 +1,5 @@
+# About our Loan Team
+
+| []() | []() | []() |
+|----------|----------|----------|
+| <div style="float:left; margin-left: 20px; margin-right:25px;"><p style="text-align:center;"><img src="https://github.com/ab90467.png" width="150" style="border-radius: 50%" /><br>Johnny Øvreberg<br>Frontend Developer<br><a href="https://github.com/ab90467"><img src="/assets/images/GitHub_Logo_White.png" width="50px"></a></p></div> | <div style="float:left; margin-left: 20px; margin-right:25px;"><p style="text-align:center;"><img src="https://github.com/rbergheim.png" width="150" style="border-radius: 50%" /><br>Roar Bergheim<br>Backend Developer<br><a href="https://github.com/rbergheim"><img src="/assets/images/GitHub_Logo_White.png" width="50px"></a></p></div> | <div style="float:left; margin-left: 20px; margin-right:25px;"><p style="text-align:center;"><img src="https://github.com/PeerAS.png" width="150" style="border-radius: 50%" /><br>Peer Andreas Stange<br>Backend Developer<br><a href="https://github.com/PeerAS"><img src="/assets/images/GitHub_Logo_White.png" width="50px"></a></p></div>
