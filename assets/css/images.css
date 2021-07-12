@@ -1,0 +1,21 @@
+img[src*='#left'] {
+  float: left;
+}
+img[src*='#right'] {
+  float: right;
+}
+img[src*='#center'] {
+  display: block;
+  margin: auto;
+}
+
+figure[src*='.left'] {
+  float: left;
+}
+figure[src*='.right'] {
+  float: right;
+}
+figure[src*='.center'] {
+  display: block;
+  margin: auto;
+}

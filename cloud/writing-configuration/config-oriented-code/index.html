@@ -1,0 +1,782 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Blog articles by the teams @ Bulder Bank" name="description"/>
+<meta content="Team Bulder" name="author"/>
+<link href="http://blog.bulderbank.no/cloud/writing-configuration/config-oriented-code/" rel="canonical"/>
+<link href="../../../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.2.1, mkdocs-material-7.1.8" name="generator"/>
+<title>Principles - Bulder Bank Blog</title>
+<link href="../../../assets/stylesheets/main.ca7ac06f.min.css" rel="stylesheet"/>
+<link href="../../../assets/stylesheets/palette.f1a3b89f.min.css" rel="stylesheet"/>
+<meta content="#ef5552" name="theme-color"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700%7CSource+Code+Pro&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font-family:"Source Sans Pro";--md-code-font-family:"Source Code Pro"}</style>
+<link href="../../../assets/css/images.css" rel="stylesheet"/>
+<link href="../../../assets/css/dark_theme.css" rel="stylesheet"/>
+</head>
+<body data-md-color-accent="blue" data-md-color-primary="red" data-md-color-scheme="slate" dir="ltr">
+<script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#configuration-oriented-code">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="Bulder Bank Blog" class="md-header__button md-logo" data-md-component="logo" href="../../.." title="Bulder Bank Blog">
+<img alt="logo" src="../../../assets/images/logo.png"/>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Bulder Bank Blog
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Principles
+            
+          </span>
+</div>
+</div>
+</div>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" data-md-state="active" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"></path></svg>
+</label>
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg>
+</button>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/bulderbank/blog/" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    bulderbank/blog
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
+<div class="md-tabs__inner md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../..">
+      Home
+    </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../android/about/">
+        Android
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../backend/about/">
+        Backend
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link md-tabs__link--active" href="../../about/">
+        Cloud
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../ios/about/">
+        iOS
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../loan/about/">
+        Loan
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../ux/about/">
+        UX
+      </a>
+</li>
+</ul>
+</div>
+</nav>
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Bulder Bank Blog" class="md-nav__button md-logo" data-md-component="logo" href="../../.." title="Bulder Bank Blog">
+<img alt="logo" src="../../../assets/images/logo.png"/>
+</a>
+    Bulder Bank Blog
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/bulderbank/blog/" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    bulderbank/blog
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../..">
+        Home
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-state="indeterminate" data-md-toggle="__nav_2" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2">
+        Android
+        <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Android" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+          Android
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../android/about/">
+        About our Android Team
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-state="indeterminate" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3">
+        Backend
+        <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Backend" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+          Backend
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../backend/about/">
+        About our Backend Team
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" id="__nav_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4">
+        Cloud
+        <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Cloud" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+          Cloud
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../about/">
+        About our Cloud Team
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" id="__nav_4_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_2">
+        Writing configuration
+        <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Writing configuration" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_2">
+<span class="md-nav__icon md-icon"></span>
+          Writing configuration
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../intro/">
+        Intro
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          Principles
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+        Principles
+      </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#time-forgets">
+    Time forgets
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#the-initial-phase-and-the-long-term">
+    The initial phase, and the long-term
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#configuration-oriented-principles">
+    Configuration oriented principles
+  </a>
+<nav aria-label="Configuration oriented principles" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#plan-for-the-future-anticipate-change">
+    Plan for the future, anticipate change
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#minimize-the-number-of-files-youre-likely-to-care-about-in-the-long-term">
+    Minimize the number of files you're likely to care about in the long term
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#make-configuration-files-as-informative-as-possible">
+    Make configuration files as informative as possible
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#parse-the-configuration-imperatively-when-needed">
+    Parse the configuration imperatively when needed
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../terraform/">
+        Terraform example
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-state="indeterminate" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_5">
+        iOS
+        <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="iOS" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+          iOS
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../ios/about/">
+        About our iOS Team
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-state="indeterminate" data-md-toggle="__nav_6" id="__nav_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6">
+        Loan
+        <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Loan" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_6">
+<span class="md-nav__icon md-icon"></span>
+          Loan
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../loan/about/">
+        About our Loan Team
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-state="indeterminate" data-md-toggle="__nav_7" id="__nav_7" type="checkbox"/>
+<label class="md-nav__link" for="__nav_7">
+        UX
+        <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="UX" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_7">
+<span class="md-nav__icon md-icon"></span>
+          UX
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../ux/about/">
+        About our UX Team
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#time-forgets">
+    Time forgets
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#the-initial-phase-and-the-long-term">
+    The initial phase, and the long-term
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#configuration-oriented-principles">
+    Configuration oriented principles
+  </a>
+<nav aria-label="Configuration oriented principles" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#plan-for-the-future-anticipate-change">
+    Plan for the future, anticipate change
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#minimize-the-number-of-files-youre-likely-to-care-about-in-the-long-term">
+    Minimize the number of files you're likely to care about in the long term
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#make-configuration-files-as-informative-as-possible">
+    Make configuration files as informative as possible
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#parse-the-configuration-imperatively-when-needed">
+    Parse the configuration imperatively when needed
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<a class="md-content__button md-icon" href="https://github.com/bulderbank/blog/edit/main/docs/cloud/writing-configuration/config-oriented-code.md" title="Edit this page">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"></path></svg>
+</a>
+<h1 id="configuration-oriented-code">Configuration oriented code<a class="headerlink" href="#configuration-oriented-code" title="Permanent link">¶</a></h1>
+<p>If we want to provision Virtual Machines in the cloud, we just communicate this desire to our cloud providers.
+If we want to deploy some app, we just communicate this desire to our clusters.
+DevOps people are generally expected to declare <em>'what'</em> they want, while the imperative <em>'how'</em> aspect often gets abstracted away by other peoples' software.</p>
+<h2 id="time-forgets">Time forgets<a class="headerlink" href="#time-forgets" title="Permanent link">¶</a></h2>
+<figure class="figure-image">
+<img alt="https://abstrusegoose.com/432" src="https://abstrusegoose.com/strips/you_down_wit_OPC-yeah_you_know_me.png"/>
+<figcaption>https://abstrusegoose.com/432</figcaption>
+</figure>
+<p>I think the image above will resonate with most developers, and it's not an experience limited to <em>other</em> peoples' code.
+Understanding what's actually happening within some repository requires a lot of cognitive calories.
+Being configuration oriented is all about making declarative code easier to understand.
+Taking a configuration oriented approach means centralizing the most important declarative information, and presenting it in a way that's easy to read.
+If we do this well, we are left with something that almost feels like documentation.
+Functional documentation.
+Documentation that dictates what happens when the code is executed.</p>
+<p>Sounds like a lot of work.
+But then again, writing and maintaining code <em>is</em> a lot of work.
+The effort you exert toward being configuration oriented should be thought of as an investment.
+You do some extra work upfront, and if you pull it off, you'll save yourself a lot of trouble in the future.
+To better understand this, we will categorize the process of writing code into two <em>phases</em>; the <em>initial phase</em>, and the <em>long-term</em>.</p>
+<h2 id="the-initial-phase-and-the-long-term">The initial phase, and the long-term<a class="headerlink" href="#the-initial-phase-and-the-long-term" title="Permanent link">¶</a></h2>
+<p>At no point in time will you understand your own code better than the moment you wrote it.
+We will refer to this moment, and the moments immediately following, as the initial phase.
+In this phase, you are bootstrapping your repository, writing code, solving problems, and doing what you do.
+A common mistake developers make during the initial phase is to overestimate their own memory.
+If you write code that relies memory to be understood, you will manifest the scenario illustrated above.
+I would therefore argue that it is wise to focus on the long-term during the initial phase of writing code.</p>
+<p>In the long-term, there are two reasons why you might revisit the code you wrote in the initial phase; to understand what's happening, or to modify what's happening.
+Writing code for the long term means that we strive to make things <em>easy</em> to understand, and <em>easy</em> to modify; simply writing code that works is not sufficient.</p>
+<h2 id="configuration-oriented-principles">Configuration oriented principles<a class="headerlink" href="#configuration-oriented-principles" title="Permanent link">¶</a></h2>
+<p>One of the central ideas behind what I refer to as being configuration oriented, is to minimize the number of files developers are likely to interact with in the long-term.
+Ideally, configuration oriented code should have one configuration file per environment (eg. <code>prod.yaml</code>, <code>dev.yaml</code>, etc.).
+These files should be structured in a way that maximises how informative they are from the perspective of a developer who has no idea what the code actually does.
+The way we accomplish this in the Cloud team at Bulder Bank, is to write our configuration as YAML files, and prioritize readability.
+We can choose any structure we want, the price we pay is that the configuration must be imparatively parsed (or translated if you will) into the input formats expected by whatever tool we are working with.
+Long story short, being configuration oriented means that we allow extra complexity into our code for the sake of an eye-friendly configuration file.
+Writing code during the initial phase becomes more difficult, while managing that code in the long term becomes a whole lot easier.</p>
+<h3 id="plan-for-the-future-anticipate-change">Plan for the future, anticipate change<a class="headerlink" href="#plan-for-the-future-anticipate-change" title="Permanent link">¶</a></h3>
+<p>During the initial phase, the developer must continually question what modifications people are likely to need in the future.
+For example, if we're dealing with a Terraform repository for assigning IAM roles to users, people will likely want to add new IAM rules over time.
+In that case, the Terraform code should be structured in a way where this can be accomplished by simply updating the configuration; it should not be necessary to modify the underlying Terraform code (the <code>for_each</code> loop is your friend).</p>
+<p>Planning for the future is tricky.
+A common trap is to overthink it, and spend far too much time implementing configuration-driven features that nobody will ever use.
+Experience, and a solid understanding of the underlying problem is as crucial as ever when anticipating future demands on some code repository.</p>
+<h3 id="minimize-the-number-of-files-youre-likely-to-care-about-in-the-long-term">Minimize the number of files you're likely to care about in the long term<a class="headerlink" href="#minimize-the-number-of-files-youre-likely-to-care-about-in-the-long-term" title="Permanent link">¶</a></h3>
+<p>Experienced DevOps people will agree that the complexity of Infrastructure as Code projects skyrocket when you introduce the requirement for multiple environments.
+For example, if you are required to maintain a production environment, a staging environment, and a development environment, the initial phase of writing code becomes a lot more challanging, regardless of your approach.
+This seems to be a fundamental problem within Infrastructure as Code, and it seems like every DevOps team has their own unique approach to solving the problem.
+From a configuration oriented point of view, this problem should be solved by isolating differences into environment's respective configuration files.
+Each environment gets its own configuration, while the code that consumes this configuration should be as environmentally agnostic as possible.</p>
+<p>Anyone who has tried to implement this kind of pattern will appreciate that it's a difficult thing to accomplish.
+Part of the reason why this is so difficult, is that there are countless ways to approach the problem, and not a whole lot of non-trivial online examples to learn from.
+Nevertheless, it is a worthwhile problem to solve as it  simplifies long-term code interaction, and makes pull requests a lot more concise.</p>
+<h3 id="make-configuration-files-as-informative-as-possible">Make configuration files as informative as possible<a class="headerlink" href="#make-configuration-files-as-informative-as-possible" title="Permanent link">¶</a></h3>
+<p>Consider the following examples for Terraform input values. 
+Which do you find more intuitive, and which do you think would fare better if we added hundreds of additional lines in the same format:</p>
+<h6 id="example-1">Example 1<a class="headerlink" href="#example-1" title="Permanent link">¶</a></h6>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># ./config.yaml</span>
+
+<span class="nt">iam</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">email</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">friend@org.com</span>
+    <span class="nt">membership</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">role</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">roles/compute.viewer</span>
+        <span class="nt">project</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">project-b</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">email</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">buddy@org.com</span>
+    <span class="nt">membership</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">role</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">roles/container.viewer</span>
+        <span class="nt">project</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">project-a</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">email</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">guy@org.com</span>
+    <span class="nt">membership</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">role</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">roles/dns.admin</span>
+        <span class="nt">project</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">project-a</span>
+      <span class="p p-Indicator">-</span> <span class="nt">role</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">roles/storage.admin</span>
+        <span class="nt">project</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">project-b</span>
+</code></pre></div>
+</td></tr></table>
+<h6 id="example-2">Example 2<a class="headerlink" href="#example-2" title="Permanent link">¶</a></h6>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># ./iam.tfvars</span>
+
+<span class="nv">friend_email</span> <span class="o">=</span> <span class="s2">"friend@org.com"</span>
+<span class="nv">friend_role_1</span> <span class="o">=</span> <span class="s2">"roles/compute.viewer"</span>
+<span class="nv">friend_project_1</span> <span class="o">=</span> <span class="s2">"project-b"</span>
+
+<span class="nv">buddy_email</span> <span class="o">=</span> <span class="s2">"buddy@org.com"</span>
+<span class="nv">buddy_role_1</span> <span class="o">=</span> <span class="s2">"roles/container.viewer"</span>
+<span class="nv">buddy_project_1</span> <span class="o">=</span> <span class="s2">"project-a"</span>
+
+<span class="nv">guy_email</span>  <span class="o">=</span> <span class="s2">"guy@org.com"</span>
+<span class="nv">guy_role_1</span> <span class="o">=</span> <span class="s2">"roles/dns.admin"</span>
+<span class="nv">guy_project_1</span> <span class="o">=</span> <span class="s2">"project-a"</span>
+<span class="nv">guy_role_2</span> <span class="o">=</span> <span class="s2">"roles/storage.admin"</span>
+<span class="nv">guy_project_2</span> <span class="o">=</span> <span class="s2">"project-b"</span>
+</code></pre></div>
+</td></tr></table>
+<p>Some subjective observations on the above:</p>
+<ul>
+<li>Example 1 is more readable (assuming the reader has seen YAML before).</li>
+<li>Example 1 is more difficult to transform into a format that Terraform understands.</li>
+<li>Example 2 makes the initial phase a lot less complicated.</li>
+</ul>
+<p>In my opinion, Example 1 prioritizes the long-term in a configuration oriented fashion, while Example 2 prioritizes simplicity in the initial phase.
+Example 1 is a configuration oriented approach, Example 2 is not.</p>
+<p>If you feel that Example 1 is no more readable than Example 2, my bet is that you would feel differently if we threw a bunch of other resources types into the mix.
+You may also be wondering why I use YAML instead of HCL in Example 1.
+If either of these apply to you, please refer to the subsequent article in this series, <em>Configuration oriented Terraform code</em>.</p>
+<h3 id="parse-the-configuration-imperatively-when-needed">Parse the configuration imperatively when needed<a class="headerlink" href="#parse-the-configuration-imperatively-when-needed" title="Permanent link">¶</a></h3>
+<p>Configuration oriented approaches usually require custom imperative logic.
+This is to be expected; it's the main reason why the initial phase of development becomes more challenging when adopting a configuration oriented approach.</p>
+<p>To illustrate, lets build on the Terraform examples:
+Assume you have some module that creates IAM rules based on input values from your configuration file.
+We'll start with Example 2, as this will be more familiar to most Terraform users.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># Example 2 approach</span>
+<span class="c1"># ./iam.tf</span>
+
+variable <span class="s2">"friend_email"</span> <span class="o">{}</span>
+variable <span class="s2">"friend_project_1"</span> <span class="o">{}</span>
+variable <span class="s2">"friend_role_1"</span> <span class="o">{}</span>
+variable <span class="s2">"friend_project_2"</span> <span class="o">{}</span>
+variable <span class="s2">"friend_role_2"</span> <span class="o">{}</span>
+<span class="c1"># etc...</span>
+
+module <span class="s2">"iam_friend_1"</span> <span class="o">{</span>
+  <span class="nb">source</span>  <span class="o">=</span> <span class="s2">"/path/to/module/"</span>
+
+  <span class="nv">email</span>   <span class="o">=</span> var.friend_email
+  <span class="nv">project</span> <span class="o">=</span> var.friend_project_1
+  <span class="nv">role</span>    <span class="o">=</span> var.friend_role_1 
+<span class="o">}</span>
+
+module <span class="s2">"iam_friend_2"</span> <span class="o">{</span>
+  <span class="nb">source</span>  <span class="o">=</span> <span class="s2">"/path/to/module/"</span>
+
+  <span class="nv">email</span>   <span class="o">=</span> var.buddy_email
+  <span class="nv">project</span> <span class="o">=</span> var.buddy_project_1
+  <span class="nv">role</span>    <span class="o">=</span> var.buddy_role_1 
+<span class="o">}</span>
+
+<span class="c1"># etc...</span>
+</code></pre></div>
+</td></tr></table>
+<p>This is not a good approach, yet this is probably how most beginners write their first lines of Terraform code. 
+It is the simplest way to get the job done, and there are plenty of scenarios where it's fine to keep things simple.</p>
+<p>The problem with this approach it lacks readability, and it doesn't scale well.
+You would have to modify a lot of code, across multiple files, to make simple adjustments (eg. removing an existing IAM role), and understanding what the code does becomes more tedious than it needs to be.</p>
+<p>For a configuration oriented approach using the input values from Example 1, we need to put some imperative logic inside a <code>locals</code> block to translate our YAML into something Terraform understands.
+The code might look a bit daunting, but you will rarely need to concern yourself with this imperative logic in the long term.
+Once you've figured out how to wrangle your configuration into a suitable format, you will never need to revisit the <code>locals</code> block unless you decide to change the structure of your <code>config.yaml</code> file.</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># Example 1 approach</span>
+<span class="c1"># ./iam.tf</span>
+
+locals <span class="o">{</span>
+  <span class="c1"># Make `config.yaml` available to Terraform</span>
+  <span class="nv">config</span> <span class="o">=</span> yamldecode<span class="o">(</span>file<span class="o">(</span><span class="s2">"./config.yaml"</span><span class="o">))</span>
+
+  <span class="c1"># Convert `local.config.iam` into a `for_each` map:</span>
+  <span class="c1"># {</span>
+  <span class="c1">#   &lt;project&gt;-&lt;role&gt;-&lt;email&gt; = {</span>
+  <span class="c1">#     email   = &lt;email&gt;</span>
+  <span class="c1">#     project = &lt;project&gt;</span>
+  <span class="c1">#     role    = &lt;role&gt;</span>
+  <span class="c1">#   }</span>
+  <span class="c1"># }</span>
+  <span class="nv">iam</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="k">for</span> rule <span class="k">in</span> flatten<span class="o">([</span>
+      <span class="k">for</span> person <span class="k">in</span> local.config.iam : <span class="o">[</span>
+        <span class="k">for</span> roles <span class="k">in</span> person.membership : <span class="o">{</span>
+          <span class="nv">email</span>   <span class="o">=</span> person.email
+          <span class="nv">role</span>    <span class="o">=</span> roles.role
+          <span class="nv">project</span> <span class="o">=</span> roles.project
+        <span class="o">}</span>
+      <span class="o">]</span>
+    <span class="o">])</span> : join<span class="o">(</span><span class="s2">"-"</span>, <span class="o">[</span>rule.project, rule.role, rule.email<span class="o">])</span> <span class="o">=</span>&gt; rule
+  <span class="o">}</span>
+<span class="o">}</span>
+
+module <span class="s2">"iam"</span> <span class="o">{</span>
+  <span class="nb">source</span>   <span class="o">=</span> <span class="s2">"/path/to/module/"</span>
+  <span class="nv">for_each</span> <span class="o">=</span> local.iam
+
+  <span class="nv">email</span>    <span class="o">=</span> each.value.email
+  <span class="nv">project</span>  <span class="o">=</span> each.value.project
+  <span class="nv">role</span>     <span class="o">=</span> each.value.role
+<span class="o">}</span>
+</code></pre></div>
+</td></tr></table>
+<p>Loops in Terraform v1.0 leave a lot to desired, but but the ability to manipulate the structure of input values is invaluable.
+Notice the trade-off eluded to earlier, between configuration readability and the complexity of the <code>for_each</code> loop.</p>
+<h1 id="concluding-remarks">Concluding remarks<a class="headerlink" href="#concluding-remarks" title="Permanent link">¶</a></h1>
+<p>Like most things in DevOps, there is no single <em>best</em> solution for organizing declarative code.
+Putting emphasis on configuration is just another style; I hope that some of you will find it helpful.</p>
+<hr/>
+<div class="md-source-date">
+<small>
+    
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 9, 2021</span>
+</small>
+</div>
+</article>
+</div>
+</div>
+<a class="md-top md-icon" data-md-component="top" data-md-state="hidden" href="#" title="Back to top">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path></svg>
+</a>
+</main>
+<footer class="md-footer">
+<nav aria-label="Footer" class="md-footer__inner md-grid">
+<a aria-label="Previous: Intro" class="md-footer__link md-footer__link--prev" href="../intro/" rel="prev">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"></path></svg>
+</div>
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                Previous
+              </span>
+              Intro
+            </div>
+</div>
+</a>
+<a aria-label="Next: Terraform example" class="md-footer__link md-footer__link--next" href="../terraform/" rel="next">
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                Next
+              </span>
+              Terraform example
+            </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"></path></svg>
+</div>
+</a>
+</nav>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+          Material for MkDocs
+        </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.expand", "navigation.indexes", "navigation.top", "header.autohide", "search.suggest"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+<script src="../../../assets/javascripts/bundle.76f349be.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,786 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Blog articles by the teams @ Bulder Bank" name="description"/>
+<meta content="Team Bulder" name="author"/>
+<link href="http://blog.bulderbank.no/cloud/writing-configuration/terraform/" rel="canonical"/>
+<link href="../../../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.2.1, mkdocs-material-7.1.8" name="generator"/>
+<title>Terraform example - Bulder Bank Blog</title>
+<link href="../../../assets/stylesheets/main.ca7ac06f.min.css" rel="stylesheet"/>
+<link href="../../../assets/stylesheets/palette.f1a3b89f.min.css" rel="stylesheet"/>
+<meta content="#ef5552" name="theme-color"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700%7CSource+Code+Pro&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font-family:"Source Sans Pro";--md-code-font-family:"Source Code Pro"}</style>
+<link href="../../../assets/css/images.css" rel="stylesheet"/>
+<link href="../../../assets/css/dark_theme.css" rel="stylesheet"/>
+</head>
+<body data-md-color-accent="blue" data-md-color-primary="red" data-md-color-scheme="slate" dir="ltr">
+<script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#configuration-oriented-terraform-code">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="Bulder Bank Blog" class="md-header__button md-logo" data-md-component="logo" href="../../.." title="Bulder Bank Blog">
+<img alt="logo" src="../../../assets/images/logo.png"/>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Bulder Bank Blog
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Terraform example
+            
+          </span>
+</div>
+</div>
+</div>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" data-md-state="active" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"></path></svg>
+</label>
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg>
+</button>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/bulderbank/blog/" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    bulderbank/blog
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
+<div class="md-tabs__inner md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../..">
+      Home
+    </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../android/about/">
+        Android
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../backend/about/">
+        Backend
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link md-tabs__link--active" href="../../about/">
+        Cloud
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../ios/about/">
+        iOS
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../loan/about/">
+        Loan
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../ux/about/">
+        UX
+      </a>
+</li>
+</ul>
+</div>
+</nav>
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Bulder Bank Blog" class="md-nav__button md-logo" data-md-component="logo" href="../../.." title="Bulder Bank Blog">
+<img alt="logo" src="../../../assets/images/logo.png"/>
+</a>
+    Bulder Bank Blog
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/bulderbank/blog/" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    bulderbank/blog
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../..">
+        Home
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-state="indeterminate" data-md-toggle="__nav_2" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2">
+        Android
+        <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Android" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+          Android
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../android/about/">
+        About our Android Team
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-state="indeterminate" data-md-toggle="__nav_3" id="__nav_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3">
+        Backend
+        <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Backend" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+          Backend
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../backend/about/">
+        About our Backend Team
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" id="__nav_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4">
+        Cloud
+        <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Cloud" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+          Cloud
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../about/">
+        About our Cloud Team
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" id="__nav_4_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4_2">
+        Writing configuration
+        <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Writing configuration" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_4_2">
+<span class="md-nav__icon md-icon"></span>
+          Writing configuration
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../intro/">
+        Intro
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../config-oriented-code/">
+        Principles
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          Terraform example
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+        Terraform example
+      </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#directory-structure">
+    Directory structure
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#passing-input-values">
+    Passing input values
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#yaml-vs-hcl">
+    YAML vs. HCL
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#practical-example">
+    Practical example
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-state="indeterminate" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_5">
+        iOS
+        <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="iOS" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+          iOS
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../ios/about/">
+        About our iOS Team
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-state="indeterminate" data-md-toggle="__nav_6" id="__nav_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6">
+        Loan
+        <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Loan" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_6">
+<span class="md-nav__icon md-icon"></span>
+          Loan
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../loan/about/">
+        About our Loan Team
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-state="indeterminate" data-md-toggle="__nav_7" id="__nav_7" type="checkbox"/>
+<label class="md-nav__link" for="__nav_7">
+        UX
+        <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="UX" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_7">
+<span class="md-nav__icon md-icon"></span>
+          UX
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../../ux/about/">
+        About our UX Team
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#directory-structure">
+    Directory structure
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#passing-input-values">
+    Passing input values
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#yaml-vs-hcl">
+    YAML vs. HCL
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#practical-example">
+    Practical example
+  </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<a class="md-content__button md-icon" href="https://github.com/bulderbank/blog/edit/main/docs/cloud/writing-configuration/terraform.md" title="Edit this page">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"></path></svg>
+</a>
+<h1 id="configuration-oriented-terraform-code">Configuration oriented Terraform code<a class="headerlink" href="#configuration-oriented-terraform-code" title="Permanent link">¶</a></h1>
+<p>This article demonstrates an opinionated pattern for organizing Terraform code.
+The pattern follows the principles listed in preceding article of this series.</p>
+<p>Before reading this article, it may be useful to familiarize yourself with how the Terraform documentation suggests we organize our code:</p>
+<ul>
+<li><a href="https://learn.hashicorp.com/tutorials/terraform/organize-configuration">https://learn.hashicorp.com/tutorials/terraform/organize-configuration</a></li>
+<li><a href="https://www.hashicorp.com/blog/structuring-hashicorp-terraform-configuration-for-production">https://www.hashicorp.com/blog/structuring-hashicorp-terraform-configuration-for-production</a></li>
+</ul>
+<h3 id="directory-structure">Directory structure<a class="headerlink" href="#directory-structure" title="Permanent link">¶</a></h3>
+<p>If we want to create a Terraform project with some home-made modules, across two environments (<code>dev</code> and <code>prod</code>), the directory layout would look something like this:</p>
+<p><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>└── my-project
+    ├── live
+    │   ├── dev
+    │   │   ├── modules.tf
+    │   │   ├── providers.tf
+    │   │   └── terraform.tf
+    │   └── prod
+    │       ├── modules.tf
+    │       ├── providers.tf
+    │       └── terraform.tf
+    └── modules
+        ├── module-a
+        │   └── main.tf
+        └── module-b
+            └── main.tf
+</code></pre></div>
+</td></tr></table>
+Each <code>modules.tf</code> file would look something like this:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># ./live/*/modules.tf</span>
+
+module <span class="s2">"a"</span> <span class="o">{</span>
+  <span class="nb">source</span>  <span class="o">=</span> <span class="s2">"../../modules/module-a"</span>
+
+  <span class="nv">var1</span> <span class="o">=</span> &lt;some input value&gt;
+  <span class="nv">var2</span> <span class="o">=</span> &lt;some input value&gt;
+  <span class="nv">var3</span> <span class="o">=</span> &lt;some input value&gt;
+<span class="o">}</span>
+
+module <span class="s2">"b"</span> <span class="o">{</span>
+  <span class="nb">source</span>  <span class="o">=</span> <span class="s2">"../../modules/module-b"</span>
+
+  <span class="nv">var1</span> <span class="o">=</span> &lt;some input value&gt;
+  <span class="nv">var2</span> <span class="o">=</span> &lt;some input value&gt;
+  <span class="nv">var3</span> <span class="o">=</span> &lt;some input value&gt;
+<span class="o">}</span>
+</code></pre></div>
+</td></tr></table>
+<h3 id="passing-input-values">Passing input values<a class="headerlink" href="#passing-input-values" title="Permanent link">¶</a></h3>
+<p>At this point, we need a strategy for forwarding input values, hereby referred to as <em>configuration</em>, into these module blocks.</p>
+<h6 id="option-1-add-configuration-directly-to-modulestf">Option 1: Add configuration directly to <code>modules.tf</code><a class="headerlink" href="#option-1-add-configuration-directly-to-modulestf" title="Permanent link">¶</a></h6>
+<p>The simplest approach would be to replace <code>&lt;some input value&gt;</code>, and just hardcode the desired configuration straight into the <code>modules.tf</code> files.
+This has several drawbacks, some notable examples being:</p>
+<ul>
+<li>You can't reuse a single input value across multiple modules.</li>
+<li>If there are a lot of modules, you'll want to spread them across multiple <code>*.tf</code> files; your configuration ends up scattered.</li>
+<li>You can't copy + paste <code>modules.tf</code> between <code>live/dev</code> and <code>live/prod</code>, so implementing change in both environments becomes a bit fiddly.</li>
+</ul>
+<h6 id="option-2-terraform-module-variables">Option 2: Terraform module variables<a class="headerlink" href="#option-2-terraform-module-variables" title="Permanent link">¶</a></h6>
+<p>The textbook approach would be to use <code>variable</code> blocks.
+In my opinion, this should only be necessary in the child modules (<code>./modules/*/variables.tf</code>), not in the root modules (<code>./live/*/variables.tf</code>).
+The reason I don't like this approach is that you have to declare every input value in the root module:
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># ./modules/module-a/variables.tf</span>
+
+variable <span class="s2">"var1"</span> <span class="o">{</span>
+  <span class="nb">type</span> <span class="o">=</span> string
+  <span class="nv">description</span> <span class="o">=</span> <span class="s2">"Input for something something cloud.."</span>
+  <span class="nv">default</span> <span class="o">=</span> <span class="s2">"whatever"</span>
+<span class="o">}</span>
+</code></pre></div>
+</td></tr></table>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># ./live/*/modules.tf</span>
+
+module <span class="s2">"a"</span> <span class="o">{</span>
+  <span class="nb">source</span> <span class="o">=</span> <span class="s2">"../../modules/module-a"</span>
+
+  <span class="c1"># Without this line, the active value will be "whatever"</span>
+  <span class="nv">var1</span> <span class="o">=</span> var.var1 
+<span class="o">}</span>
+</code></pre></div>
+</td></tr></table>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># ./live/*/variables.tf</span>
+
+variable <span class="s2">"var1"</span> <span class="o">{</span>
+  <span class="nb">type</span> <span class="o">=</span> string
+  <span class="nv">description</span> <span class="o">=</span> <span class="s2">"Used with module.a, but not necessarily module.b"</span>
+  <span class="nv">default</span> <span class="o">=</span> <span class="s2">"derp"</span>
+<span class="o">}</span>
+</code></pre></div>
+</td></tr></table>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1">#./live/*/config.auto.tfvars</span>
+
+<span class="c1"># Without this line, the active value will be either "derp" or "whatever"</span>
+<span class="nv">var1</span> <span class="o">=</span> <span class="s2">"cauliflower"</span> 
+</code></pre></div>
+</td></tr></table>
+The example above involves seven files across <code>dev</code> and <code>prod</code>.
+Each of the files displayed above represent a place where the active value for <code>module.a</code> might be defined.
+When somebody is trying to figure out how some resource in <code>prod</code> is configured, that person might have to traverse four files to find the active value.
+This can be alleviated with good and consistent Terraform coding style, but I feel that there is too much potential for confusion.</p>
+<h6 id="option-3-use-locals">Option 3: Use locals<a class="headerlink" href="#option-3-use-locals" title="Permanent link">¶</a></h6>
+<p>Terraform comes with <a href="https://www.terraform.io/docs/language/values/locals.html">local values</a>, and a nice set of functions for decoding common file structures, like YAML and JSON.
+In other words, it's possible to do this:</p>
+<p><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># ./live/*/config.yaml</span>
+
+<span class="nt">module-a</span><span class="p">:</span>
+  <span class="nt">var1</span><span class="p">:</span> <span class="s">"x"</span>
+  <span class="nt">var2</span><span class="p">:</span> <span class="s">"y"</span>
+  <span class="nt">var3</span><span class="p">:</span> <span class="s">"z"</span>
+
+<span class="nt">module-b</span><span class="p">:</span>
+  <span class="nt">var1</span><span class="p">:</span> <span class="s">"a"</span>
+  <span class="nt">var2</span><span class="p">:</span> <span class="s">"b"</span>
+  <span class="nt">var3</span><span class="p">:</span> <span class="s">"c"</span>
+</code></pre></div>
+</td></tr></table>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># ./live/*/locals.tf</span>
+
+locals <span class="o">{</span>
+  <span class="nv">config</span> <span class="o">=</span> yamldecode<span class="o">(</span>file<span class="o">(</span><span class="s2">"./config.yaml"</span><span class="o">))</span> 
+<span class="o">}</span>
+</code></pre></div>
+</td></tr></table>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># ./live/*/modules.tf</span>
+
+module <span class="s2">"a"</span> <span class="o">{</span>
+  <span class="nb">source</span>  <span class="o">=</span> <span class="s2">"../../modules/module-a"</span>
+
+  <span class="nv">var1</span> <span class="o">=</span> local.config.module-a.var1
+  <span class="nv">var2</span> <span class="o">=</span> local.config.module-a.var2
+  <span class="nv">var3</span> <span class="o">=</span> local.config.module-a.var2
+<span class="o">}</span>
+
+module <span class="s2">"b"</span> <span class="o">{</span>
+  <span class="nb">source</span>  <span class="o">=</span> <span class="s2">"../../modules/module-b"</span>
+
+  <span class="nv">var1</span> <span class="o">=</span> local.config.module-b.var1
+  <span class="nv">var2</span> <span class="o">=</span> local.config.module-b.var2
+  <span class="nv">var3</span> <span class="o">=</span> local.config.module-b.var3
+<span class="o">}</span>
+</code></pre></div>
+</td></tr></table>
+The most significant difference between Options 2 and 3, is that there is no need for the <code>./live/*/variables.tf</code> files.
+They are replaced with <code>./live/*/locals.tf</code>, and unlike the <code>variables.tf</code> files, these do not need to be modified when you define new values in <code>config.yaml</code>.
+This is an enormous advantage.
+Picture what the <code>./live/*/variables.tf</code> files from Option 2 would look like if we added all six input varibles for <code>module.a</code> and <code>module.b</code>; that's a lot of code.
+With the Option 3 pattern, we no longer need to declare root level variables, anything you declare in <code>config.yaml</code> will automatically be available under the <code>local.config</code> map.</p>
+<p>At the time of writing, my preferred approach is to combine Option 1 and Option 3. 
+If a value will vary between environments, or if it is important with respect to understanding what the code does, it ends up in <code>config.yaml</code>.
+Values that will not vary between environments, and that are unlikely to change over time, get hardcoded straight into the <code>module</code> blocks.</p>
+<blockquote>
+<p>It is important to note that Option 3 should only be employed in the root modules (<code>./live/*</code>), not in the child modules (<code>./modules/*</code>).</p>
+</blockquote>
+<h3 id="yaml-vs-hcl">YAML vs. HCL<a class="headerlink" href="#yaml-vs-hcl" title="Permanent link">¶</a></h3>
+<p>Option 3 can easily be accomplished with the HCL file format instead of YAML.
+We just prefer YAML because it is easier to read (and write).</p>
+<p>One of the core ideas behind this pattern is that the configuration should be the most informative file within an environment directory.
+Using YAML makes this file easier to interpret, and the project becomes more accessible to developers who are not familiar with HCL.</p>
+<h3 id="practical-example">Practical example<a class="headerlink" href="#practical-example" title="Permanent link">¶</a></h3>
+<p>In this section we will walk through the process of writing a configuration oriented Terraform project covering multiple environments.</p>
+<h5 id="the-task">The task<a class="headerlink" href="#the-task" title="Permanent link">¶</a></h5>
+<p>Create a Terraform structure for Google Cloud Platform that provisions service accounts, and assigns them IAM roles.
+There should be two environments <code>dev</code> and <code>prod</code>.
+Assume that the Google Cloud Projects for these environments, <code>dev-project</code> and <code>prod-project</code> already exist.
+It should be possible to assign IAM roles at the project level, and for storage buckets.
+Furthermore, it should be possible to assign IAM roles for any GCP project, and any storage bucket.
+The service accounts will live in <code>dev-project</code> and <code>prod-project</code>, but should be granted some IAM roles in another pre-existing project; <code>shared-project</code>.</p>
+<h5 id="the-approach">The approach<a class="headerlink" href="#the-approach" title="Permanent link">¶</a></h5>
+<p>I always start with the directory layout and the <code>config.yaml</code> files.
+I focus on <code>dev</code>, and write my code in a way where most of the files can be copy + pasted into <code>prod</code>.
+We will use the same directory layout illustrated earlier.
+When writing your <code>config.yaml</code> file; ask yourself what the most intuitive structure would look like.
+For this particular problem, I would want <code>config.yaml</code> to look something like this:
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1"># ./live/dev/config.yaml</span>
+
+<span class="nt">gcpProvider</span><span class="p">:</span> 
+  <span class="nt">project</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">dev-project</span>
+  <span class="nt">region</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">europe-west1</span>
+
+<span class="c1"># Create service accounts in `dev-project`, and assign IAM roles</span>
+<span class="nt">serviceAccounts</span><span class="p">:</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">sa-number-one</span>
+    <span class="nt">iam</span><span class="p">:</span>
+      <span class="c1"># Assign `sa-number-one` project-level IAM roles in `dev-project`</span>
+      <span class="p p-Indicator">-</span> <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">project</span>
+        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">dev-project</span>
+        <span class="nt">roles</span><span class="p">:</span> 
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">roles/storage.admin</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">roles/secretmanager.admin</span>
+
+  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">sa-number-two</span>
+    <span class="nt">iam</span><span class="p">:</span>
+      <span class="c1"># Assign `sa-number-two` project-level IAM roles in `shared-project`</span>
+      <span class="p p-Indicator">-</span> <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">project</span>
+        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">shared-project</span>
+        <span class="nt">roles</span><span class="p">:</span>
+          <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">roles/storage.objectViewer</span>
+
+      <span class="c1"># Assign `sa-number-two` bucket-level IAM roles to a Google Container Registry in `shared-project`</span>
+      <span class="p p-Indicator">-</span> <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">bucket</span>
+        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">eu.artifacts.shared-project.appspot.com</span>
+        <span class="nt">roles</span><span class="p">:</span>
+          <span class="p p-Indicator">-</span>  <span class="l l-Scalar l-Scalar-Plain">roles/storage.admin</span>
+</code></pre></div>
+</td></tr></table>
+This YAML layout gives me a foundation to build on.
+The goal is to end up with a strucure where service accounts and IAM roles can be created, destroyed or modified through the <code>config.yaml</code> file.</p>
+<p>The next step would be to write the root and child modules.
+The child modules will just contain normal Terraform code, while the root module will have to contain some imperative logic that translates my YAML into the input values expected by the child modules.</p>
+<p>Please refer to <a href="https://github.com/bulderbank/blog/tree/main/attachments/terraform-yaml-example">this repository</a> for a complete example based on the YAML configuration depicted above.</p>
+<p>Some notes on the example:</p>
+<ul>
+<li>Every file except for <code>config.yaml</code> is identical between <code>dev</code> and <code>prod</code>, so it's easy to copy + paste. Usually, <code>terraform.tf</code> will also differ because the environments have different remote state storage locations.</li>
+<li>All <code>resource</code> blocks are contained within modules, even though the modules are very simple. We do this because it is arguably cleaner than putting <code>resource</code> blocks directly into the <code>./live/*</code> directories (try running <code>terraform state list</code>).</li>
+<li>The <code>for</code> loops are difficult to understand, but one never has to modify them unless there is a need to modify the structure of <code>config.yaml</code>; developers will seldom be interested in these loops in the long-term.</li>
+</ul>
+<hr/>
+<div class="md-source-date">
+<small>
+    
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 9, 2021</span>
+</small>
+</div>
+</article>
+</div>
+</div>
+<a class="md-top md-icon" data-md-component="top" data-md-state="hidden" href="#" title="Back to top">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path></svg>
+</a>
+</main>
+<footer class="md-footer">
+<nav aria-label="Footer" class="md-footer__inner md-grid">
+<a aria-label="Previous: Principles" class="md-footer__link md-footer__link--prev" href="../config-oriented-code/" rel="prev">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"></path></svg>
+</div>
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                Previous
+              </span>
+              Principles
+            </div>
+</div>
+</a>
+<a aria-label="Next: About our iOS Team" class="md-footer__link md-footer__link--next" href="../../../ios/about/" rel="next">
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                Next
+              </span>
+              About our iOS Team
+            </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"></path></svg>
+</div>
+</a>
+</nav>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+          Material for MkDocs
+        </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.expand", "navigation.indexes", "navigation.top", "header.autohide", "search.suggest"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.b0710199.min.js", "version": null}</script>
+<script src="../../../assets/javascripts/bundle.76f349be.min.js"></script>
+</body>
+</html>
