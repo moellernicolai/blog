@@ -15,7 +15,7 @@ and background color
 
 /* Increase content area width */
 .md-grid {
-  max-width: 1440px;
+  max-width: 1700px;
 }
 
 /*
@@ -160,16 +160,18 @@ Icon color
 headline color and
 result list background
 */
+
 .md-search-result__list {
   color: #EEEEEE !important;
   background-color: #0b1222 !important;
 }
 
+
 /*
 result info/count
 */
 .md-search-result__meta {
-  background-color: #EEEEEE !important;
+  background-color: #0b1222 !important;
 }
 
 /*
